@@ -8,10 +8,10 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1280, height: 720, frame: false})
+  mainWindow = new BrowserWindow({width: 1600, height: 900, frame: false})
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('home.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -37,7 +37,7 @@ app.on('ready', () =>{
     console.log("Recieved IPC message "+ arg);
     mainWindow.close();
   })
-  
+
 })
 
 // Quit when all windows are closed.

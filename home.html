@@ -4,256 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="assets/styles/layout.css">
   <title>Almanac</title>
 </head>
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Raleway');
-
-  * {
-    font-family: 'Raleway', sans-serif;
-  }
-
-  body {
-    background-color: #1e3143;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    color: #ff9523;
-    margin-top: 0;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0px;
-    /* remove scrollbar space */
-    background: transparent;
-    /* optional: just make scrollbar invisible */
-  }
-
-  ::-webkit-scrollbar-thumb {
-    width: 0px;
-    /* remove scrollbar space */
-    background: transparent;
-    /* optional: just make scrollbar invisible */
-  }
-
-  .topbar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 30px;
-    background-color: #ff9523;
-    padding: 8px;
-  }
-
-  .canvas {
-    position: absolute;
-    top: 30px;
-    bottom: 16px;
-    right: 0;
-    left: 46px;
-    display: inline-flex;
-    overflow: hidden;
-  }
-
-  #ram {
-    display: inline-block;
-    margin: 5%;
-    width: 50%;
-    height: 50%;
-    position: relative;
-  }
-
-  #cpu {
-    display: inline-block;
-    margin: 20px;
-    width: 75%;
-    height: 75%;
-    position: relative;
-  }
-
-  #disk0 {
-    display: inline-block;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-
-  #temp {
-    margin: 20px;
-    width: 100px;
-    height: 100px;
-    position: relative;
-  }
-
-  .card {
-    display: inline-block;
-    border-radius: 10px;
-    background-color: white;
-    padding: 16px;
-    text-align: center;
-    margin-right: 8px;
-  }
-
-  .no-margin{
-    margin-right:0;
-  }
-
-  .left{
-    position: relative;
-    top: 0;
-    height: 100%;
-    width: 30%;
-    padding: 16px;
-    padding-right:16px;
-    bottom: 16px;
-  }
-
-  .right{
-    overflow: scroll;
-    position: relative;
-    top:0;
-    left: 16px;
-    right: 0;
-    height: 100%;
-    width: 65%;
-    padding: 16px;
-    bottom: 16px;
-  }
-
-  .square {
-    width: 22.5%;
-  }
-
-  .wide {
-    width: 30%;
-  }
-
-  .full {
-    height: 33%;
-    width: 100%;
-  }
-
-  .sys_info {
-    width: 100%;
-    height: 97%;
-    overflow: scroll;
-    font-size: 0.85rem;
-  }
-
-  .usage_info {
-    position: relative;
-    top:0;
-    left: 0;
-    display: inline-flex;
-    margin-bottom: 16px;
-    height: 22.5%;
-  }
-
-  .temp_info {
-    position: relative;
-    top:0;
-    left: 0;
-    display: inline-flex;
-    margin-bottom: 16px;
-    height: 22.5%;
-  }
-
-  .disk_info {
-    position: relative;
-    top:0;
-    left: 0;
-    padding-right: 16px;
-  }
-
-  hr {
-    opacity: 50%;
-  }
-
-  .inline-block {
-    display: inline-block;
-    margin-right: 16px;
-  }
-
-  .scroll{
-    overflow: scroll;
-  }
-
-  .title-bar{
-    position: absolute;
-    left: 0;
-    right: 30px;
-    top:0;
-    height:30px;
-    background: white;
-    -webkit-app-region: drag;
-  }
-
-  .close{
-    position: absolute;
-    right:0;
-    top:0;
-  }
-
-  .key{
-    float: left;
-    width: 45%;
-    padding: 8px;
-    margin-bottom: 16px;
-    text-align: right;
-    height: auto;
-  }
-
-  .value{
-    float: right;
-    width: 45%;
-    padding: 8px;
-    margin-bottom: 16px;
-    text-align: left;
-    height: auto;
-  }
-
-  .head{
-    padding: 8px;
-    width: 100%;
-    text-align: left;
-    font-weight: 600;
-  }
-
-  .sub-head{
-    width: 100%;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .part1{
-    float: left;
-    width: 45%;
-    margin-bottom: 16px;
-    text-align: center;
-    height: auto;
-  }
-
-  .part2{
-    float: right;
-    width: 45%;
-    margin-bottom: 16px;
-    text-align: center;
-    height: auto;
-  }
-
-</style>
-
 <body>
-  <div class="topbar">
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href="#">A</a>
+      <hr style="background-color: var(--white); height:1px;">
+    </div>
 
+    <div class="sidebar-apps"><a href="#"><img style="width:20px; height:20px" src="assets/icons/home.png"></a></div>
+    <div class="sidebar-apps"><a href="#"><img style="width:20px; height:20px" src="assets/icons/computer.png"></a></div>
+    <div class="sidebar-apps"><a href="#"><img style="width:20px; height:20px" src="assets/icons/settings.png"></a></div>
   </div>
 
   <div class="title-bar">
@@ -261,8 +24,6 @@
 
   </div>
   <a class="close" id="close" href="#0"><div style="float:right; padding:8px; color: orange;"><b>X</b></div></a>
-
-
 
   <div class="canvas">
 
@@ -272,6 +33,7 @@
           <div class="head">CPU<hr style="padding:0; margin:0"></div>
           <div class="key">
             <div>Processor :</div>
+            <div>Familiy :</div>
             <div>Physical Cores :</div>
             <div>Threads :</div>
             <div>Clock Speed :</div>
@@ -283,13 +45,14 @@
 
           <div class="value">
             <div id="cpus">-</div>
+            <div id="cpu_family"></div>
             <div id="cpu_physical_cores">-</div>
             <div id="cpu_cores">-</div>
             <div id="cpu_speed">-</div>
             <div id="cpu_socket">-</div>
             <div id="cpu_cache_1">-</div>
-            <div id="cpu_cache_2">2MB</div>
-            <div id="cpu_cache_3">6MB</div>
+            <div id="cpu_cache_2">-</div>
+            <div id="cpu_cache_3">-</div>
 
           </div>
 
@@ -361,18 +124,18 @@
           <div class="sub-head">CPU Clocks<hr></div>
           <div class="part1">
             <div>Current</div>
-            <div>3.4GHz</div>
+            <div id="cpu_currentClock">3.4GHz</div>
             <hr>
             <div>Avg:</div>
-            <div>4.2GHz</div>
+            <div id="cpu_averageClock">4.2GHz</div>
           </div>
 
           <div class="part2">
             <div>Min:</div>
-            <div>0.5GHz</div>
+            <div id="cpu_minClock">0.5GHz</div>
             <hr>
             <div>Max:</div>
-            <div>4.4Ghz</div>
+            <div id="cpu_maxClock">4.4Ghz</div>
 
           </div>
         </div>
@@ -404,18 +167,18 @@
           <div class="sub-head">CPU Temperature<hr></div>
           <div class="part1">
             <div>Temp</div>
-            <div>63</div>
+            <div id="cpu_currentTemp">63</div>
             <hr>
             <div>Avg:</div>
-            <div>64</div>
+            <div id="cpu_averageTemp">64</div>
           </div>
 
           <div class="part2">
             <div>Min:</div>
-            <div>25</div>
+            <div id="cpu_minTemp">25</div>
             <hr>
             <div>Max:</div>
-            <div>72</div>
+            <div id="cpu_maxTemp">72</div>
 
           </div>
         </div>

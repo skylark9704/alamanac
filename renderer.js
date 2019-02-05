@@ -23,16 +23,57 @@ exit.addEventListener('click',function(){
 var diskinfo = null;
 si.cpu(function(data) {
   var cpu_m = document.getElementById('cpus');
+  var cpu_family = document.getElementById('cpu_family');
   var cpu_pc = document.getElementById('cpu_physical_cores');
   var cpu_c = document.getElementById('cpu_cores');
   var cpu_s = document.getElementById('cpu_speed');
   var cpu_skt = document.getElementById('cpu_socket');
+  var cpu_c_l1 = document.getElementById('cpu_cache_1');
+  var cpu_c_l2 = document.getElementById('cpu_cache_2');
+  var cpu_c_l3 = document.getElementById('cpu_cache_3');
   cpu_m.innerHTML = data.manufacturer + " " + data.brand;
+  cpu_family.innerHTML = data.family;
   cpu_pc.innerHTML = data.physicalCores;
   cpu_c.innerHTML = data.cores;
-  cpu_s.innerHTML = data.speed + "GHz";
+  cpu_s.innerHTML = data.speedmax + "GHz";
   cpu_skt.innerHTML = data.socket;
+  cpu_c_l1.innerHTML = data.cache.l1d/Math.pow(1024, 2)+"MB";
+  cpu_c_l2.innerHTML = data.cache.l2/Math.pow(1024, 2)+"MB";
+  cpu_c_l3.innerHTML = data.cache.l3/Math.pow(1024, 2)+"MB";
 });
+
+setInterval(cpu_speed,2000);
+
+function cpu_speed(){
+  si.cpuCurrentspeed(function(data){
+
+    var cpu_averageClock = document.getElementById('cpu_averageClock');
+    var cpu_currentClock = document.getElementById('cpu_currentClock');
+    var cpu_minClock = document.getElementById('cpu_minClock');
+    var cpu_maxClock = document.getElementById('cpu_maxClock');
+
+    cpu_currentClock.innerHTML = data.avg+"GHz";
+    cpu_averageClock.innerHTML = data.avg+"GHz";
+    cpu_minClock.innerHTML = data.min+"GHz";
+    cpu_maxClock.innerHTML = data.max+"GHz";
+
+  })
+
+  si.cpuTemperature(function(data){
+    console.log(data);
+
+    var cpu_averageTemp = document.getElementById('cpu_averageTemp');
+    var cpu_currentTemp = document.getElementById('cpu_currentTemp');
+    var cpu_minTemp = document.getElementById('cpu_minTemp');
+    var cpu_maxTemp = document.getElementById('cpu_maxTemp');
+
+    cpu_currentTemp.innerHTML = data.main+"°C";
+    cpu_averageTemp.innerHTML = data.main+"°C";
+    cpu_minTemp.innerHTML = data.main+"°C";
+    cpu_maxTemp.innerHTML = data.max+"°C";
+  })
+}
+
 
 si.diskLayout(function(data) {
   for (var i = 0; i < data.length; i++) {
